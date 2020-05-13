@@ -45,7 +45,7 @@ class ShoppingItemController {
     
     ///PERSISTANCE FUNCTIONS
     //Save
-    private func saveToPersistantStore() {
+    func saveToPersistantStore() {
         guard let url = persistentFileURL else { return }
         
         do {
@@ -58,7 +58,7 @@ class ShoppingItemController {
     }
     
     //Load
-    private func loadFromPersistentStore() {
+    func loadFromPersistentStore() {
         let fm = FileManager.default
         guard let url = persistentFileURL,
             fm.fileExists(atPath: url.path) else { return }
@@ -81,6 +81,7 @@ class ShoppingItemController {
             initItems()
             saveToPersistantStore()
             UserDefaults.standard.set(true, forKey: .initializedKey)
+            
         }
     }
     
