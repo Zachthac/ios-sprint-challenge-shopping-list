@@ -1,0 +1,50 @@
+//
+//  GroceryItemCollectionViewController.swift
+//  Shopping List
+//
+//  Created by Clean Mac on 5/10/20.
+//  Copyright © 2020 Lambda School. All rights reserved.
+//
+
+import UIKit
+
+
+class GroceryItemCollectionViewController: UICollectionViewController {
+
+    let groceryController = ShoppingItemController()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView?.reloadData()
+    }
+    // MARK: UICollectionViewDataSource
+
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return groceryController.shoppingItems.count
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GroceryCell", for: indexPath) as? GroceryCollectionViewCell else { return UICollectionViewCell() }
+            let groceryItem = groceryController.shoppingItems[indexPath.item]
+            cell.shoppingItem = groceryItem
+            return cell
+    }
+
+    // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        var item = groceryController.shoppingItems[indexPath.item]
+        item.inShoppingCart.toggle()
+        groceryController.shoppingItems[indexPath.item] = item
+        collectionView.reloadData()
+        return true
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailSegue" {
+            guard let addDetailVC = segue.destination as? GroceryListDetailViewController else { return }
+            addDetailVC.delegate = groceryController.shoppingItems
+        }
+    }
+
+}
+

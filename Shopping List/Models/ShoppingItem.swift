@@ -9,14 +9,14 @@
 import UIKit
 
 
-struct ShopingItem: Equatable{
+struct ShoppingItem: Equatable, Codable{
+  
     var name: String
     
-    var inShoppingCart: Bool
+    var inShoppingCart: Bool = false
     
-    var image: UIImage {
-        guard let image = (UIImage(named: name)) else {return UIImage() }
-        return image
+    var image: UIImage? {
+        return UIImage(named: name)
 }
 }
 
