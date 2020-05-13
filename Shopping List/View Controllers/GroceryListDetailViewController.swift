@@ -13,6 +13,9 @@ class GroceryListDetailViewController: UIViewController {
 
     var delegate: [ShoppingItem]?
     
+    var shoppingItemController: ShoppingItemController?
+
+    
     var cartCount: Int? {
         return shoppingItems?.count
     }

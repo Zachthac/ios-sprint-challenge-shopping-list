@@ -16,7 +16,6 @@ class GroceryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var groceryImageView: UIImageView!
     @IBOutlet weak var groceryItemLabel: UILabel!
     
-    
     var shoppingItem: ShoppingItem? {
         didSet {
             updateViews()
