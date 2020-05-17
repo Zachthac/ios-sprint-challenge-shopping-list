@@ -10,10 +10,16 @@ import Foundation
 
 class ShoppingItemController {
     
+    init() {
+        initItems()
+        loadFromPersistentStore()
+    }
+    
+    
     var shoppingItems: [ShoppingItem] = []
- 
+    
     func initItems() {
-    let itemNames = ["Apple", "Grapes", "Milk", "Muffin", "Popcorn", "Soda", "Strawberries"]
+        let itemNames = ["Apple", "Grapes", "Milk", "Muffin", "Popcorn", "Soda", "Strawberries"]
         for itemName in itemNames {
             let item = ShoppingItem(name: itemName)
             shoppingItems.append(item)
@@ -72,18 +78,7 @@ class ShoppingItemController {
         }
     }
     
-    init() {
-        let itemsAreInitialized = UserDefaults.standard.bool(forKey: .initializedKey)
-        
-        if itemsAreInitialized {
-            loadFromPersistentStore()
-        } else {
-            initItems()
-            saveToPersistantStore()
-            UserDefaults.standard.set(true, forKey: .initializedKey)
-            
-        }
-    }
+    
     
 }
 

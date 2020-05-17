@@ -16,7 +16,7 @@ struct ShoppingItem: Equatable, Codable{
     var inShoppingCart: Bool = false
     
     var image: UIImage? {
-        return UIImage(named: name)
+    return UIImage(named: name)
 }
 }
 

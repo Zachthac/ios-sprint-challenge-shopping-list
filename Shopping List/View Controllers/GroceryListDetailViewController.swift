@@ -9,6 +9,12 @@
 import UIKit
 
 class GroceryListDetailViewController: UIViewController {
+    
+    override func viewDidLoad() {
+           super.viewDidLoad()
+           updateView()
+
+       }
     var shoppingItems: [ShoppingItem]? 
 
     var delegate: [ShoppingItem]?
@@ -26,19 +32,14 @@ class GroceryListDetailViewController: UIViewController {
     
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+   
     
     func updateView() {
         guard let itemCount = delegate?.count else { return }
         self.cartCountLabel.text = "You currently have \(itemCount) in your shopping cart"
     }
     
-    @IBAction func changeShoppingListButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     @IBAction func sendPressed(_ sender: UIButton) {
         guard let name = name.text, let address = address.text else { return }
